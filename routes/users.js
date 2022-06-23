@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const Post = require("../models/Post");
 
-//DELETE
+//GET
 router.get("/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -45,7 +45,7 @@ router.delete("/:id", async (req, res) => {
   if (req.body.userId === req.params.id) {
     try {
       const user = await User.findById(req.params.id);
-      if (!user) throw "NOT_FOUND";
+      if (!user) throw "USER_NOT_FOUND";
       try {
         await Post.deleteMany({ username: user.username });
         await User.findByIdAndDelete(req.params.id);
