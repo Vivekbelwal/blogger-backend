@@ -34,7 +34,6 @@ router.get("/:id", async (req, res) => {
 router.get("/", async (req, res) => {
   const username = req.query.username;
   const category = req.query.category;
-  console.log(username,category)
   try {
     const posts = await Post.find({
       ...(username && { username }),
